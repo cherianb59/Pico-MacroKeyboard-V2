@@ -1,6 +1,25 @@
 # Pico-MacroKeyboard-V2
 A Pi Pico Macropad, based on https://github.com/Guitarman9119/Raspberry-Pi-Pico-/tree/main/Pico%20MacroKeyboard%20V2
 
+## Changes from original 
+
+There are a few changes from the original macro pad 
+
+- Update to new version of CircuitPython. His used v7 I'm using v9
+- Change code to use adafruits keypad library, new code heavily borrows from adafruits macropad code.
+- New 3d printed case 
+
+
+## Things I would like to change
+
+These are all cosmetic changes, I can do the code changes, but I'm not good at 3d modelling or circuit board design. 
+
+- Move the keys closer together, there is too much space in between all the keys, then make the whole pad smaller.
+- Recess the keys, they are too proud of the case 
+- Move the pico to the underside of the board. The pico looks out of place, it can be moved to the underside without any PCB changes, the female headers just need to be put on the other side of the PCB. This would free up some space for at least another button on top 
+- lower the macropad height and give it a slant such that the bottom row of keys are slightly lower than the top rows. This along with recessing the keys will make the screen more visible. 
+
+
 ## Introduction
 
 Welcome to this tutorial on creating a mechanical macro keyboard PCB using EasyEDA and Raspberry Pi Pico with Circuit Python.
