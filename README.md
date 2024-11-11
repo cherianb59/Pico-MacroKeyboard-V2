@@ -7,7 +7,7 @@ There are a few changes from the original macro pad
 
 - Update to new version of CircuitPython. His used v7 I'm using v9
 - Change code to use adafruits keypad library, new code heavily borrows from adafruits macropad code.
-- New 3d printed case 
+- New 3d printed case, uses a keycap for modeswitch button, slightly more recessed main keycaps, screen and rotary encoders are less exposed.
 
 
 ## Things I would like to change
