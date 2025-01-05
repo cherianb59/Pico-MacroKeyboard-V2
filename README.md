@@ -35,10 +35,10 @@ Last element is a list, each element in this list sends a keyboard or mouse comm
 
 
 - Type a sentence Example :  "password"
-- Hold down a button Example : Keycode.ENTER, all keycodes are available https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.keycode.Keycode  
+- Hold down a button Example : Keycode.ENTER, [all keycodes are available here](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.keycode.Keycode)
 - Release a button Example : -Keycode.ENTER
 - Sleep, in seconds Example : 0.01
-- Send a consumer control code Example : [ConsumerControlCode.VOLUME_INCREMENT] https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.consumer_control_code.ConsumerControlCode
+- Send a consumer control code Example : [ConsumerControlCode.VOLUME_INCREMENT] [Consumer Control Codes](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.consumer_control_code.ConsumerControlCode)
 - Move mouse Example : {"x":565,"y":0}
 - Hold down mouse buttons Example : {"buttons": Mouse.LEFT_BUTTON}
 - Release mouse buttons Example : {"buttons": -Mouse.LEFT_BUTTON}
