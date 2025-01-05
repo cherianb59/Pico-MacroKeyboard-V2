@@ -1,6 +1,70 @@
 # Pico-MacroKeyboard-V2
 A Pi Pico Macropad, based on https://github.com/Guitarman9119/Raspberry-Pi-Pico-/tree/main/Pico%20MacroKeyboard%20V2
 
+## How to use 
+
+When you plug in you should see a srive called CIRCUITPY.
+
+In that drive in the macro folder edit or create a new file.
+
+Filename format is nn_name.py, where nn is a two digit number (zero filled).
+
+### File Format
+
+The file contains a single dictionary called app, there are three keys, "name", "macros" and "encoders"
+
+##### Name
+
+This is the display text of the screen
+
+#### Macros 
+
+A list of 11 tuples, one for each key. These define the button macros
+
+The first tuple is the top left key, last tuple is the bottom right key.
+
+Each tuple has three elements 
+
+The first element is the RGB value (e.g. 0XFF0000 for red) for the neopixel, the neopixel will change to this colour when you press the button. 
+
+Second element is a name for the macro
+
+Last element is a list, each element in this list sends a keyboard or mouse command
+
+##### Commands 
+
+
+- Type a sentence Example :  "password"
+- Hold down a button Example : Keycode.ENTER, all keycodes are available https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.keycode.Keycode  
+- Release a button Example : -Keycode.ENTER
+- Sleep, in seconds Example : 0.01
+- Send a consumer control code Example : [ConsumerControlCode.VOLUME_INCREMENT] https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.consumer_control_code.ConsumerControlCode
+- Move mouse Example : {"x":565,"y":0}
+- Hold down mouse buttons Example : {"buttons": Mouse.LEFT_BUTTON}
+- Release mouse buttons Example : {"buttons": -Mouse.LEFT_BUTTON}
+
+##### Examples 
+
+- Double tap spacebar as quickly as possible, useful for advancing one frame in a youtube video 
+```
+  (0x000000, "", [Keycode.SPACE,-Keycode.SPACE,Keycode.SPACE,-Keycode.SPACE]),
+```
+
+- Open powershell and switch between monitor speakers and headphones
+```
+  (0x000000, "", [Keycode.GUI,Keycode.R,-Keycode.GUI,-Keycode.R,"""powershell\n""",0.1,"""$Audio = Get-AudioDevice -playback
+if ($Audio.Name.StartsWith("DELL S2722DC")) {
+   (Get-AudioDevice -list | Where-Object Name -like ("Speakers (Realtek(R) Audio)*") | Set-AudioDevice)
+}  Else {
+   (Get-AudioDevice -list | Where-Object Name -like ("DELL S2722DC*") | Set-AudioDevice)
+}
+exit\n"""])
+```
+#### Encoders
+
+This section functions exactly the same as the macros section.
+
+
 ## Changes from original 
 
 There are a few changes from the original macro pad 
@@ -17,7 +81,7 @@ These are all cosmetic changes, I can do the code changes, but I'm not good at 3
 - Move the keys closer together, there is too much space in between all the keys, then make the whole pad smaller.
 - Recess the keys, they are too proud of the case 
 - Move the pico to the underside of the board. The pico looks out of place, it can be moved to the underside without any PCB changes, the female headers just need to be put on the other side of the PCB. This would free up some space for at least another button on top 
-- lower the macropad height and give it a slant such that the bottom row of keys are slightly lower than the top rows. This along with recessing the keys will make the screen more visible. 
+- lower the macropad height and give it a slant such that the bottom row of keys are lower than the top rows. This along with recessing the keys will make the screen more visible. 
 
 
 ## Introduction
