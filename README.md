@@ -1,9 +1,9 @@
 # Pico-MacroKeyboard-V2
-A Pi Pico Macropad, based on https://github.com/Guitarman9119/Raspberry-Pi-Pico-/tree/main/Pico%20MacroKeyboard%20V2
+A Pi Pico Macropad, based on [this](https://github.com/Guitarman9119/Raspberry-Pi-Pico-/tree/main/Pico%20MacroKeyboard%20V2)
 
 ## How to use 
 
-When you plug in you should see a srive called CIRCUITPY.
+When you plug in you should see a drive called CIRCUITPY.
 
 In that drive in the macro folder edit or create a new file.
 
@@ -25,7 +25,7 @@ The first tuple is the top left key, last tuple is the bottom right key.
 
 Each tuple has three elements 
 
-The first element is the RGB value (e.g. 0XFF0000 for red) for the neopixel, the neopixel will change to this colour when you press the button. 
+The first element is the RGB value (e.g. 0XFF0000 for red) for the neopixel, the neopixel will change to this colour when you press the button. (not implemented yet)
 
 Second element is a name for the macro
 
@@ -33,15 +33,16 @@ Last element is a list, each element in this list sends a keyboard or mouse comm
 
 ##### Commands 
 
+Each element in the list sends a USB command, the type of command depends on the variable type.
 
-- Type a sentence Example :  "password"
-- Hold down a button Example : Keycode.ENTER, [all keycodes are available here](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.keycode.Keycode)
-- Release a button Example : -Keycode.ENTER
-- Sleep, in seconds Example : 0.01
-- Send a consumer control code Example : [ConsumerControlCode.VOLUME_INCREMENT] [Consumer Control Codes](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.consumer_control_code.ConsumerControlCode)
-- Move mouse Example : {"x":565,"y":0}
-- Hold down mouse buttons Example : {"buttons": Mouse.LEFT_BUTTON}
-- Release mouse buttons Example : {"buttons": -Mouse.LEFT_BUTTON}
+- Type a sentence Example :  "password", variable type str.
+- Hold down a button Example : Keycode.ENTER, variable type positive integer [all keycodes are available here](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.keycode.Keycode)
+- Release a button Example : -Keycode.ENTER, variable type positive integer
+- Sleep, in seconds Example : 0.01, float
+- Send a consumer control code Example : [ConsumerControlCode.VOLUME_INCREMENT] [Consumer Control Codes available here](https://docs.circuitpython.org/projects/hid/en/latest/api.html#adafruit_hid.consumer_control_code.ConsumerControlCode) , variable type positive list
+- Move mouse Example : {"x":565,"y":0} , variable type positive dictionary
+- Hold down mouse buttons Example : {"buttons": Mouse.LEFT_BUTTON} , variable type dictionary
+- Release mouse buttons Example : {"buttons": -Mouse.LEFT_BUTTON} , variable type dictionary
 
 ##### Examples 
 
@@ -50,7 +51,7 @@ Last element is a list, each element in this list sends a keyboard or mouse comm
   (0x000000, "", [Keycode.SPACE,-Keycode.SPACE,Keycode.SPACE,-Keycode.SPACE]),
 ```
 
-- Open powershell and switch between monitor speakers and headphones
+- Open powershell and type a script that switches between monitor speakers and headphones (for my particular setup)
 ```
   (0x000000, "", [Keycode.GUI,Keycode.R,-Keycode.GUI,-Keycode.R,"""powershell\n""",0.1,"""$Audio = Get-AudioDevice -playback
 if ($Audio.Name.StartsWith("DELL S2722DC")) {
@@ -67,7 +68,7 @@ This section functions exactly the same as the macros section.
 
 ## Changes from original 
 
-There are a few changes from the original macro pad 
+There are a few changes from the [original macro pad](https://www.youtube.com/watch?v=jRFB2Z2zMP4) 
 
 - Update to new version of CircuitPython. His used v7 I'm using v9
 - Change code to use adafruits keypad library, new code heavily borrows from adafruits macropad code.
